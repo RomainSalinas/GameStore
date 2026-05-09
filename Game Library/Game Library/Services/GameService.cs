@@ -56,4 +56,42 @@ public class GameService(HttpClient httpClient)
             throw; // Re-throw the exception in case of error
         }
     }
+
+    public async Task UpdateGameAsync(int id, Game game)
+    {
+        try
+        {
+            var updateGameDto = new
+            {
+                Name = game.Name,
+                GenreId = game.GenreId,
+                Price = game.Price,
+                ReleaseDate = game.ReleaseDate.ToString("yyyy-MM-dd")
+            };
+
+            var response = await httpClient.PutAsJsonAsync($"http://localhost:5113/games/{id}", updateGameDto);
+            response.EnsureSuccessStatusCode(); // Throw an exception if the response is not successful
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            Console.Error.WriteLine($"Error updating game with ID {id}: {ex.Message}");
+            throw; // Re-throw the exception in case of error
+        }
+    }
+
+    public async Task DeleteGameAsync(int id)
+    {
+        try
+        {
+            var response = await httpClient.DeleteAsync($"http://localhost:5113/games/{id}");
+            response.EnsureSuccessStatusCode(); // Throw an exception if the response is not successful
+        }
+        catch (Exception ex)
+        {
+            // Log the exception
+            Console.Error.WriteLine($"Error deleting game with ID {id}: {ex.Message}");
+            throw; // Re-throw the exception in case of error
+        }
+    }
 }

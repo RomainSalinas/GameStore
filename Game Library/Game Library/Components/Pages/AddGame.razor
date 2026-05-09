@@ -2,6 +2,8 @@
 @using Game_Library.Services
 @using Microsoft.AspNetCore.Components.Forms
 
+@rendermode InteractiveServer
+
 @inject GameService GameService
 @inject GenreService GenreService
 @inject NavigationManager NavigationManager
@@ -79,5 +81,5 @@
         <InputDate @bind-Value="newGame.ReleaseDate" class="form-control" id="gameReleaseDate" />
         <ValidationMessage For="() => newGame.ReleaseDate" />
     </div>
-    <button type="submit" class="btn btn-primary" disabled="@(isLoading || newGame.Price <= 0)">Add Game</button>
+    <button type="submit" class="btn btn-primary" disabled="@(isLoading || newGame.GenreId == 0 || newGame.Price <= 0)">Add Game</button>
 </EditForm>

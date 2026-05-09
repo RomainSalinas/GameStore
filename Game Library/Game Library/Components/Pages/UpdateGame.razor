@@ -1,0 +1,61 @@
+@page "/updateGame/{gameId:int}"
+@using Game_Library.Services
+
+@rendermode InteractiveServer
+@inject GameService GameService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Update Game</PageTitle>
+
+<h1>Update an existing game in your library</h1>
+
+<EditForm Model="updateGame" OnSubmit="UpdateActualGame" class="mt-4" FormName="updateGameForm">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="gameName" class="form-label">Game Name</label>
+        <InputText @bind-Value="updateGame.Name" class="form-control" id="gameName" />
+        <ValidationMessage For="() => updateGame.Name" />
+    </div>
+    <div class="mb-3">
+        <label for="gameGenre" class="form-label">Genre</label>
+        <InputSelect @bind-Value="updateGame.GenreId" class="form-control" id="gameGenre">
+            <option value="0">Select a genre</option>
+            @foreach (var genre in Genres)
+            {
+                <option value="@genre.Id">@genre.Name</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => updateGame.GenreId" />
+    </div>
+    <div class="mb-3">
+        <label for="gamePrice" class="form-label">Price</label>
+        <InputNumber @bind-Value="updateGame.Price" step="0.01" class="form-control" id="gamePrice" />
+        <ValidationMessage For="() => updateGame.Price" />
+    </div>
+    <div class="mb-3">
+        <label for="gameReleaseDate" class="form-label">Release Date</label>
+        <InputDate @bind-Value="updateGame.ReleaseDate" class="form-control" id="gameReleaseDate" />
+        <ValidationMessage For="() => updateGame.ReleaseDate" />
+    </div>
+    <button type="submit" class="btn btn-primary" disabled="@(isLoading || updateGame.GenreId == 0 || updateGame.Price <= 0)">Update Game</button>
+</EditForm>
+
+@code {
+    private Game updateGame = new Game() { ReleaseDate = DateOnly.FromDateTime(DateTime.Today) };
+    private List<Genre> Genres = new List<Genre>();
+    private bool isLoading = false;
+    
+    private async Task UpdateActualGame()
+    {
+        try
+        {
+            isLoading = true;
+            await GameService.UpdateGameAsync(updateGame.Id, updateGame);
+            NavigationManager.NavigateTo("/");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}
