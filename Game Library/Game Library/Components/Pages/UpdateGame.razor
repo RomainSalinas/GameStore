@@ -3,6 +3,7 @@
 
 @rendermode InteractiveServer
 @inject GameService GameService
+@inject GenreService GenreService
 @inject NavigationManager NavigationManager
 
 <PageTitle>Update Game</PageTitle>
@@ -41,9 +42,22 @@
 </EditForm>
 
 @code {
+    [Parameter]
+    public int gameId { get; set; }
+    
     private Game updateGame = new Game() { ReleaseDate = DateOnly.FromDateTime(DateTime.Today) };
     private List<Genre> Genres = new List<Genre>();
     private bool isLoading = false;
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        Genres = await GenreService.GetGenresAsync();
+        var game = await GameService.GetGameByIdAsync(gameId);
+        if (game != null)
+        {
+            updateGame = game;
+        }
+    }
     
     private async Task UpdateActualGame()
     {
