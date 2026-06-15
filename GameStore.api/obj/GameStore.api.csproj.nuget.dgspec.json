@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.api\\GameStore.api.csproj": {}
+    "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.API\\GameStore.api.csproj": {}
   },
   "projects": {
-    "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.api\\GameStore.api.csproj": {
+    "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.API\\GameStore.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.api\\GameStore.api.csproj",
+        "projectUniqueName": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.API\\GameStore.api.csproj",
         "projectName": "GameStore.api",
-        "projectPath": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.api\\GameStore.api.csproj",
+        "projectPath": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.API\\GameStore.api.csproj",
         "packagesPath": "C:\\Users\\romai\\.nuget\\packages\\",
-        "outputPath": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.api\\obj\\",
+        "outputPath": "e:\\Utilisateur\\romai\\Desktop\\Projets\\GameStore\\GameStore.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.204/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
